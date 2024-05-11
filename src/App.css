@@ -1,0 +1,26 @@
+.task {
+  border: 1px solid #2eb44f;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: azure;
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-header button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.AddTask {
+  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
