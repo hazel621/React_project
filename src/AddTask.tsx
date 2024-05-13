@@ -4,7 +4,7 @@ interface Task {
   id: number;
   name: string;
   description: string;
-  priority: string;
+  priority: number;
 }
 interface AddTaskProps {
   onAdd: (newTask: Task) => void;
@@ -12,7 +12,7 @@ interface AddTaskProps {
 function AddTask({ onAdd }: AddTaskProps) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [priority, setPriority] = useState("medium");
+  const [priority, setPriority] = useState(3);
 
   const handleAddTask = () => {
     // 创建新任务对象
@@ -24,12 +24,13 @@ function AddTask({ onAdd }: AddTaskProps) {
     };
 
     // 将新任务传递给父组件进行添加
+    if (name === "") return alert("Please fill in name");
     onAdd(newTask);
 
     // 清空表单
     setName("");
     setDescription("");
-    setPriority("medium");
+    setPriority(3);
   };
 
   return (
@@ -52,10 +53,16 @@ function AddTask({ onAdd }: AddTaskProps) {
       </div>
       <div>
         <label>Priority:</label>
-        <select value={priority} onChange={(e) => setPriority(e.target.value)}>
-          <option value="high">High</option>
-          <option value="medium">Medium</option>
-          <option value="low">Low</option>
+        <select
+          value={priority}
+          onChange={(e) => setPriority(Number(e.target.value))}
+        >
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
         </select>
       </div>
       <button onClick={handleAddTask}>Add Task</button>

@@ -4,16 +4,16 @@ interface EditedTask {
   id: number;
   editedName: string;
   editedDescription: string;
-  editedPriority: string;
+  editedPriority: number;
 }
 
 interface TaskProps {
   id: number;
   name: string;
   description: string;
-  priority: string;
+  priority: number;
   onSave: (editedTask: EditedTask) => void;
-  onDelete: (taskId: number) => void; // 新增 onDelete 函数
+  onDelete: (taskId: number) => void;
 }
 
 function Task(task: TaskProps) {
@@ -57,11 +57,14 @@ function Task(task: TaskProps) {
           />
           <select
             value={editedPriority}
-            onChange={(e) => setEditedPriority(e.target.value)}
+            onChange={(e) => setEditedPriority(Number(e.target.value))}
           >
-            <option value="high">High</option>
-            <option value="medium">Medium</option>
-            <option value="low">Low</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
           </select>
           <button onClick={handleSave}>Save</button>
         </div>
@@ -70,9 +73,12 @@ function Task(task: TaskProps) {
           <div>Name: {task.name}</div>
           <div>Description: {task.description}</div>
           <div>Priority: {task.priority}</div>
-          <button onClick={handleEdit}>Edit</button>
-          {/* 添加删除按钮 */}
-          <button onClick={handleDelete}>Delete</button>
+          <button className="edit-button" onClick={handleEdit}>
+            Edit
+          </button>
+          <button className="delete-button" onClick={handleDelete}>
+            Delete
+          </button>
         </div>
       )}
     </div>

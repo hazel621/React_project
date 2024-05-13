@@ -1,17 +1,25 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-// import './App.css'
-// import Task from './task'
+import Logo from "./assets/logo.jpg";
+import "./App.css";
 import ListGroup from "./ListComponent/ListGroup";
 import AddTask from "./AddTask";
 
 function App() {
   return (
-    <div>
-      {" "}
-      <h1>Neolocus </h1>
+    <div className="container">
+      <img
+        style={{
+          // display: "flex",
+          width: "30vw",
+          height: "auto",
+          justifyContent: "center",
+          marginTop: "30px",
+          marginBottom: "30px",
+        }}
+        src={Logo}
+        alt="react logo"
+      />
       <ListGroup />
-      {/* <AddTask /> */}
     </div>
   );
 }

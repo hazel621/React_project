@@ -6,33 +6,21 @@ interface TaskProps {
   id: number;
   name: string;
   description: string;
-  priority: string;
+  priority: number;
 }
 interface EditedTask {
   id: number;
   editedName: string;
   editedDescription: string;
-  editedPriority: string;
+  editedPriority: number;
 }
 function ListGroup() {
   const initialTasks: TaskProps[] = [
     {
       id: 1,
-      name: "Task 1",
-      description: "Task 1 description",
-      priority: "high",
-    },
-    {
-      id: 2,
-      name: "Task 2",
-      description: "Task 2 description",
-      priority: "medium",
-    },
-    {
-      id: 3,
-      name: "Task 3",
-      description: "Task 3 description",
-      priority: "low",
+      name: "Example Task",
+      description: "This is an example task",
+      priority: 3,
     },
   ];
 
@@ -53,9 +41,13 @@ function ListGroup() {
     const filteredTasks = tasks.filter((task) => task.id !== taskId);
     setTasks(filteredTasks);
   };
+
+  const sortedTasks = tasks.slice().sort((a, b) => b.priority - a.priority);
+
   return (
     <div>
-      {tasks.map((task) => (
+      <AddTask onAdd={addTask} />
+      {sortedTasks.map((task) => (
         <Task
           key={task.id}
           id={task.id}
@@ -66,7 +58,6 @@ function ListGroup() {
           onDelete={handleDeleteTask}
         />
       ))}
-      <AddTask onAdd={addTask} />
     </div>
   );
 }
